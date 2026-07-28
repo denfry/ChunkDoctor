@@ -1,0 +1,34 @@
+name: Risk score quality
+description: Report a suspected false positive or false negative
+title: "[Scoring]: "
+labels: [scoring]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Report type
+      options:
+        - False positive
+        - False negative
+        - Recommendation mismatch
+    validations:
+      required: true
+  - type: input
+    id: result
+    attributes:
+      label: Observed score, level, and confidence
+      placeholder: 84 / CRITICAL / HIGH
+    validations:
+      required: true
+  - type: textarea
+    id: metrics
+    attributes:
+      label: ChunkDoctor metrics and reasons
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Profiling evidence
+      description: Include relevant spark evidence and server behavior without private data.

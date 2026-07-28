@@ -1,0 +1,64 @@
+name: ChunkDoctor
+version: "${version}"
+main: dev.chunkdoctor.ChunkDoctorPlugin
+description: Incremental risk analyzer for loaded Paper chunks
+author: denfry
+website: https://github.com/denfry/ChunkDoctor
+api-version: '1.21.8'
+
+commands:
+  chunkdoctor:
+    description: Analyze potentially expensive chunks
+    usage: /chunkdoctor help
+    aliases: [cd]
+    permission: chunkdoctor.use
+
+permissions:
+  chunkdoctor.use:
+    description: Use the base ChunkDoctor command
+    default: op
+  chunkdoctor.scan:
+    description: Run quick scans
+    default: op
+  chunkdoctor.deep:
+    description: Run bounded deep scans
+    default: op
+  chunkdoctor.top:
+    description: View ranked chunks
+    default: op
+  chunkdoctor.info:
+    description: View chunk details
+    default: op
+  chunkdoctor.teleport:
+    description: Teleport to analyzed chunks
+    default: op
+  chunkdoctor.export:
+    description: Export JSON reports
+    default: op
+  chunkdoctor.reload:
+    description: Reload ChunkDoctor configuration
+    default: op
+  chunkdoctor.control:
+    description: Start and stop passive monitoring
+    default: op
+  chunkdoctor.clear:
+    description: Clear the in-memory result cache
+    default: op
+  chunkdoctor.notify:
+    description: Receive and toggle risk notifications
+    default: op
+  chunkdoctor.admin:
+    description: All ChunkDoctor permissions
+    default: op
+    children:
+      chunkdoctor.use: true
+      chunkdoctor.scan: true
+      chunkdoctor.deep: true
+      chunkdoctor.top: true
+      chunkdoctor.info: true
+      chunkdoctor.teleport: true
+      chunkdoctor.export: true
+      chunkdoctor.reload: true
+      chunkdoctor.control: true
+      chunkdoctor.clear: true
+      chunkdoctor.notify: true

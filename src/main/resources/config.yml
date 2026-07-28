@@ -1,0 +1,93 @@
+# ChunkDoctor 1.0.0
+# All background scans inspect loaded chunks only. No setting enables chunk loading.
+monitoring:
+  enabled: true
+  interval-ticks: 100
+  chunks-per-cycle: 2
+  max-milliseconds-per-tick: 2.0
+  rescan-cooldown-seconds: 300
+  result-expiration-minutes: 60
+  pause-below-tps: 17.0
+  resume-above-tps: 18.5
+  worker-threads: 2
+  maximum-pending-analyses: 64
+
+worlds:
+  # blacklist: scan every world except entries; whitelist: scan only entries.
+  mode: blacklist
+  list:
+    - example_disabled_world
+
+manual-scan:
+  maximum-radius: 8
+  maximum-chunks: 128
+
+deep-scan:
+  enabled: true
+  blocks-per-tick: 2048
+  maximum-milliseconds-per-tick: 3.0
+  maximum-duration-seconds: 30
+  maximum-concurrent-scans: 1
+
+risk:
+  thresholds:
+    medium: 30
+    high: 60
+    critical: 80
+  weights:
+    entities: 0.20
+    item-entities: 0.40
+    villagers: 2.50
+    ai-mobs: 0.80
+    minecarts: 1.50
+    boats: 0.60
+    item-frames: 0.35
+    hoppers: 1.20
+    active-hoppers: 0.40
+    furnaces: 0.70
+    active-furnaces: 0.80
+    pistons: 1.00
+    observers: 1.00
+    repeaters: 0.65
+    comparators: 0.75
+    redstone: 0.20
+    active-redstone: 0.50
+    spawners: 4.00
+    containers: 0.35
+    block-entities: 0.15
+  excess-thresholds:
+    entities: 100
+    items: 64
+    villagers: 24
+    minecarts: 20
+    hoppers: 32
+    block-entities: 64
+    redstone-components: 96
+  threshold-penalty-factor: 0.075
+  density-penalty-factor: 8.0
+
+notifications:
+  enabled: true
+  critical-only: true
+  significant-increase: 15
+  cooldown-seconds: 300
+
+export:
+  directory: reports
+  pretty-json: true
+
+messages:
+  prefix: "<dark_gray>[<gold>ChunkDoctor</gold>]</dark_gray> "
+  no-permission: "<red>Недостаточно прав.</red>"
+  player-only: "<red>Эта команда доступна только игроку.</red>"
+  unknown-command: "<red>Неизвестная подкоманда. Используйте <yellow>/cd help</yellow>.</red>"
+  invalid-number: "<red>Ожидалось целое число в допустимом диапазоне.</red>"
+  scan-started: "<green>Сканирование поставлено в ограниченную очередь.</green>"
+  no-loaded-chunks: "<yellow>В указанной области нет загруженных чанков.</yellow>"
+  config-reloaded: "<green>Конфигурация проверена и перечитана.</green>"
+  monitoring-started: "<green>Пассивный мониторинг запущен.</green>"
+  monitoring-stopped: "<yellow>Пассивный мониторинг остановлен.</yellow>"
+  clear-confirm: "<yellow>Повторите <gold>/cd clear confirm</gold> в течение 30 секунд.</yellow>"
+  cache-cleared: "<green>Кэш результатов очищен.</green>"
+  export-complete: "<green>JSON-отчёт создан: <white><file></white></green>"
+  export-failed: "<red>Не удалось создать отчёт. Подробности записаны в консоль.</red>"

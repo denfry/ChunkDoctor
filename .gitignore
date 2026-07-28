@@ -1,0 +1,42 @@
+# Gradle
+.gradle/
+build/
+
+# IDEs
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+.claude/
+.codex/
+.agents/
+
+# Runtime and local server data
+run/
+server/
+logs/
+crash-reports/
+plugins/
+reports/
+*.log
+
+# Secrets and local overrides
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.json
+
+# Operating systems
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local implementation brief
+prompt.md
