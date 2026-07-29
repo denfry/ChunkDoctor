@@ -42,6 +42,12 @@ jobs:
           fi
           ./gradlew clean build --no-daemon --warning-mode all
 
+      - name: Publish to Modrinth
+        env:
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+          MODRINTH_PROJECT_ID: ${{ vars.MODRINTH_PROJECT_ID }}
+        run: ./gradlew modrinth --no-daemon --warning-mode all
+
       - name: Create GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
