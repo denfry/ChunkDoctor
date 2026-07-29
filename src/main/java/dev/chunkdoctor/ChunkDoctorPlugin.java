@@ -10,6 +10,7 @@ import dev.chunkdoctor.config.ConfigLoader;
 import dev.chunkdoctor.config.PluginConfig;
 import dev.chunkdoctor.listener.WorldLifecycleListener;
 import dev.chunkdoctor.message.MessageService;
+import dev.chunkdoctor.metrics.MetricsBootstrap;
 import dev.chunkdoctor.model.ChunkAnalysisResult;
 import dev.chunkdoctor.monitoring.MonitoringService;
 import dev.chunkdoctor.monitoring.ResultRepository;
@@ -59,8 +60,10 @@ public final class ChunkDoctorPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(
                 new WorldLifecycleListener(deepScans, manualScans, repository), this);
 
+        MetricsBootstrap.start(this);
         monitoring.restartIfEnabled();
-        getLogger().info("ChunkDoctor 1.0.0 enabled. Scores estimate risk; they do not measure per-chunk TPS.");
+        getLogger().info("ChunkDoctor " + getPluginMeta().getVersion()
+                + " enabled. Scores estimate risk; they do not measure per-chunk TPS.");
     }
 
     @Override

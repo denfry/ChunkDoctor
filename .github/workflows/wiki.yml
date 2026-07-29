@@ -1,0 +1,58 @@
+name: Publish Wiki
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "wiki/**"
+      - ".github/workflows/wiki.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-wiki
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Sync wiki pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Publish wiki
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          WIKI_REPOSITORY: ${{ github.repository }}.wiki
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          wiki_url="https://x-access-token:${GITHUB_TOKEN}@github.com/${WIKI_REPOSITORY}.git"
+          if ! git ls-remote "$wiki_url" >/dev/null 2>&1; then
+            echo "::error::Initialize the GitHub Wiki by creating its first Home page, then rerun this workflow."
+            exit 1
+          fi
+
+          wiki_checkout="$RUNNER_TEMP/chunkdoctor-wiki"
+          git clone --depth 1 "$wiki_url" "$wiki_checkout"
+          rsync -a --delete --exclude ".git/" wiki/ "$wiki_checkout/"
+
+          cd "$wiki_checkout"
+          wiki_branch="$(git branch --show-current)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --all
+
+          if git diff --cached --quiet; then
+            echo "Wiki is already up to date."
+            exit 0
+          fi
+
+          git commit -m "docs: sync project wiki"
+          git push origin "HEAD:$wiki_branch"

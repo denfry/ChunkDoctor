@@ -12,6 +12,8 @@
 <p align="center">
   <a href="https://github.com/denfry/ChunkDoctor/actions/workflows/build.yml"><img alt="Build" src="https://github.com/denfry/ChunkDoctor/actions/workflows/build.yml/badge.svg"></a>
   <a href="https://github.com/denfry/ChunkDoctor/releases"><img alt="Release" src="https://img.shields.io/github/v/release/denfry/ChunkDoctor?display_name=tag&sort=semver"></a>
+  <a href="https://bstats.org/plugin/bukkit/ChunkDoctor/32969"><img alt="Servers using ChunkDoctor on bStats" src="https://img.shields.io/bstats/servers/32969?label=bStats%20servers"></a>
+  <a href="https://github.com/denfry/ChunkDoctor/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/denfry/ChunkDoctor"></a>
   <img alt="Paper 1.21.8" src="https://img.shields.io/badge/Paper-1.21.8-2f3136?logo=paper">
   <img alt="Java 21" src="https://img.shields.io/badge/Java-21-e76f00?logo=openjdk&logoColor=white">
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-22c55e.svg"></a>
@@ -21,6 +23,8 @@
   <a href="#installation">Installation</a> ·
   <a href="#commands">Commands</a> ·
   <a href="#configuration">Configuration</a> ·
+  <a href="https://github.com/denfry/ChunkDoctor/wiki">Wiki</a> ·
+  <a href="#gallery">Gallery</a> ·
   <a href="docs/README_RU.md">Русская документация</a>
 </p>
 
@@ -66,6 +70,16 @@ to profile execution time.
 - **Asynchronous atomic JSON exports** confined to the plugin data directory.
 - **Permission-gated notifications** with cooldowns and persistent player opt-out.
 - **No NMS, reflection, database, or mandatory plugin dependencies.**
+
+## Gallery
+
+| Explainable analysis | Highest-risk chunks | Bounded deep scan |
+|---|---|---|
+| [![ChunkDoctor explains an 84 out of 100 CRITICAL chunk risk score](docs/assets/gallery/chunkdoctor-risk-analysis.png)](docs/assets/gallery/chunkdoctor-risk-analysis.png) | [![ChunkDoctor ranks loaded chunks by risk](docs/assets/gallery/chunkdoctor-risk-ranking.png)](docs/assets/gallery/chunkdoctor-risk-ranking.png) | [![ChunkDoctor deep scan progresses within block and time budgets](docs/assets/gallery/chunkdoctor-deep-scan.png)](docs/assets/gallery/chunkdoctor-deep-scan.png) |
+
+These are representative gameplay mockups based on the real commands, default
+budgets, and output model. They are not captures from a particular production
+server.
 
 ## Performance model
 
@@ -180,7 +194,19 @@ disabling the plugin.
 The complete scoring weights, world filters, notification settings, message
 templates, JSON schema, operational guidance, and troubleshooting are documented
 in the [Russian reference](docs/README_RU.md). An English configuration reference
-will expand as the public API stabilizes.
+is available in the [project wiki](https://github.com/denfry/ChunkDoctor/wiki).
+
+## Documentation
+
+| Guide | Contents |
+|---|---|
+| [Installation](https://github.com/denfry/ChunkDoctor/wiki/Installation) | Requirements, upgrade procedure, first-run checks |
+| [Commands and permissions](https://github.com/denfry/ChunkDoctor/wiki/Commands-and-Permissions) | Complete command and permission reference |
+| [Configuration](https://github.com/denfry/ChunkDoctor/wiki/Configuration) | Monitoring, scanning, worlds, notifications, exports |
+| [Risk scoring](https://github.com/denfry/ChunkDoctor/wiki/Risk-Scoring) | Score inputs, nonlinear penalties, levels, confidence |
+| [Performance and safety](https://github.com/denfry/ChunkDoctor/wiki/Performance-and-Safety) | Thread boundaries, budgets, overload behavior |
+| [Troubleshooting](https://github.com/denfry/ChunkDoctor/wiki/Troubleshooting) | Common symptoms and diagnostic steps |
+| [Building and releasing](https://github.com/denfry/ChunkDoctor/wiki/Building-and-Releasing) | Java 21 build, tags, Modrinth and GitHub releases |
 
 ## Building from source
 
@@ -221,6 +247,14 @@ See the [changelog](CHANGELOG.md) for released changes and
 Please do not publish exploitable issues, path escapes, permission bypasses, or
 denial-of-service findings in a public issue. Follow [SECURITY.md](SECURITY.md)
 for private reporting.
+
+## Anonymous metrics
+
+ChunkDoctor uses [bStats](https://bstats.org/plugin/bukkit/ChunkDoctor/32969) to
+collect anonymous, aggregated usage statistics. It does not collect player
+names, chat, world data, coordinates, scan results, configuration values, or
+report contents. Server owners can disable metrics globally in
+`plugins/bStats/config.yml`.
 
 ## License
 

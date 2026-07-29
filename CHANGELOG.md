@@ -18,6 +18,7 @@ All notable changes to ChunkDoctor are documented here. The project follows
 - Interactive Adventure and MiniMessage command interface.
 - Administrator notifications with cooldown and persistent opt-out.
 - Safe asynchronous JSON report exports.
+- Anonymous, globally opt-out bStats usage metrics.
 - Unit tests and checksum-pinned Gradle builds.
 
 [Unreleased]: https://github.com/denfry/ChunkDoctor/compare/v1.0.0...HEAD
