@@ -1,7 +1,7 @@
 plugins {
     java
-    id("com.gradleup.shadow") version "8.3.10"
-    id("com.modrinth.minotaur") version "2.9.0"
+    id("com.gradleup.shadow") version "9.6.1"
+    id("com.modrinth.minotaur") version "2.10.0"
 }
 
 group = "dev.chunkdoctor"
@@ -29,11 +29,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
-    implementation("com.google.code.gson:gson:2.13.1")
+    compileOnly("io.papermc.paper:paper-api:26.2.build.124-stable")
+    implementation("com.google.code.gson:gson:2.14.0")
     implementation("org.bstats:bstats-bukkit:3.2.1")
 
-    testImplementation("org.junit.jupiter:junit-jupiter:5.13.4")
+    testImplementation("org.junit.jupiter:junit-jupiter:6.1.3")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
